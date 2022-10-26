@@ -1,10 +1,7 @@
 <?php
-
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,13 +20,12 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
-        "name" => "Ikhsan rachmat",
+        "name" => "Ikhsan Rachmat",
         "email" => "23ikhsanrachmat@gmail.com",
         "image" => "wow.jpg"
     ]);
 });
 
 
-
 Route::get('/blog', [PostController::class, 'index']);
-Route::get('posts/{slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
