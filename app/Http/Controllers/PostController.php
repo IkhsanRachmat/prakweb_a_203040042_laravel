@@ -12,7 +12,8 @@ class PostController extends Controller
         return view('posts', [
             "title" => "Posts",
             "posts" => Post::all()
-        ]);
+        ]); 
+        
     }
 
     public function show($slug)
