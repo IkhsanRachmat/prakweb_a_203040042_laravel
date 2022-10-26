@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,77 +15,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('home', [
         "title" => "Home"
     ]);
 });
-
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
-        "name" => "Ikhsan Rachmat Alghifari",
-        "email" => "23Ikhsanrachmat@gmail.com",
+        "name" => "Ikhsan rachmat",
+        "email" => "23ikhsanrachmat@gmail.com",
         "image" => "wow.jpg"
     ]);
 });
 
 
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            "title" => "Judul Post Pertama",
-            "slug" => "judul-post-pertama",
-            "author" => "Ikhsan rachmat",
-            "body" => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius sit iure aliquam maiores laudantium maxime inventore illum beatae aliquid distinctio minima, aut quidem aspernatur, error praesentium deserunt perferendis vitae quos eum odit quod magnam minus. Sint aut voluptatum iure eos illum repudiandae impedit corrupti reprehenderit consectetur! Magnam, vero optio. Voluptatibus molestias nostrum, perferendis corporis quo cum quaerat. Repellendus, quos. Provident corrupti repudiandae, cum eos earum esse dolore sunt nostrum non 
-            perspiciatis unde possimus asperiores doloribus, cupiditate aliquam, 
-            sed mollitia dolor? Voluptatibus cum impedit rem accusantium maxime soluta est sed ad?"
-        ],
-        [
-            "title" => "Judul Post Kedua",
-            "slug" => "judul-post-kedua",
-            "author" => "Mang Feb",
-            "body" => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius sit iure aliquam maiores laudantium maxime inventore illum beatae aliquid distinctio minima, aut quidem aspernatur, error praesentium deserunt perferendis vitae quos eum odit quod magnam minus. Sint aut voluptatum iure eos illum repudiandae impedit corrupti reprehenderit consectetur! Magnam, vero optio. Voluptatibus molestias nostrum, perferendis corporis quo cum quaerat. Repellendus, quos. Provident corrupti repudiandae, cum eos earum esse dolore sunt nostrum non 
-            perspiciatis unde possimus asperiores doloribus, cupiditate aliquam"
-        ]
-    ];
-
-    return view('posts', [
-        "title" => "Posts",
-        "posts" => $blog_posts
-    ]);
-});
-
-// Halaman singel Post
-Route::get('posts/{slug}', function ($slug) {
-    $blog_posts = [
-        [
-            "title" => "Judul Post Pertama",
-            "slug" => "judul-post-pertama",
-            "author" => "Febrian Fauzan R",
-            "body" => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius sit iure aliquam maiores laudantium maxime inventore illum beatae aliquid distinctio minima, aut quidem aspernatur, error praesentium deserunt perferendis vitae quos eum odit quod magnam minus. Sint aut voluptatum iure eos illum repudiandae impedit corrupti reprehenderit consectetur! Magnam, vero optio. Voluptatibus molestias nostrum, perferendis corporis quo cum quaerat. Repellendus, quos. Provident corrupti repudiandae, cum eos earum esse dolore sunt nostrum non 
-            perspiciatis unde possimus asperiores doloribus, cupiditate aliquam, 
-            sed mollitia dolor? Voluptatibus cum impedit rem accusantium maxime soluta est sed ad?"
-        ],
-        [
-            "title" => "Judul Post Kedua",
-            "slug" => "judul-post-kedua",
-            "author" => "Ikhsan Rachmat",
-            "body" => "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius sit iure aliquam maiores laudantium maxime inventore illum beatae aliquid distinctio minima, aut quidem aspernatur, error praesentium deserunt perferendis vitae quos eum odit quod magnam minus. Sint aut voluptatum iure eos illum repudiandae impedit corrupti reprehenderit consectetur! Magnam, vero optio. Voluptatibus molestias nostrum, perferendis corporis quo cum quaerat. Repellendus, quos. Provident corrupti repudiandae, cum eos earum esse dolore sunt nostrum non 
-            perspiciatis unde possimus asperiores doloribus, cupiditate aliquam"
-        ]
-    ];
-    $new_post = [];
-    foreach ($blog_posts as $post) {
-        if ($post["slug"] == $slug) {
-            $new_post = $post;
-        }
-    }
-
-    return view('post', [
-        "title" => "Singel Post",
-        "post" => $new_post
-    ]);
-});
+Route::get('/blog', [PostController::class, 'index']);
+Route::get('posts/{slug}', [PostController::class, 'show']);
