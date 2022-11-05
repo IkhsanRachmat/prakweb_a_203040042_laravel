@@ -1,9 +1,13 @@
 <?php
-use App\Http\Controllers\PostController;
+
+
 use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,10 +26,11 @@ Route::get('/', function () {
 });
 Route::get('/about', function () {
     return view('about', [
-        "title" => "About",
-        "name" => "Ikhsan Rachmat Alghifari",
-        "email" => "23ikhsanrachmat@gmail.com",
-        "image" => "wow.jpg"
+        'title' => "About",
+        "active" => "about",
+        'name' => "Ikhsan rachmat",
+        'email' => "23ikhsanrachmat@gmail.com",
+        'image' => "wow.jpg"
     ]);
 });
 Route::get('/blog', [PostController::class, 'index']);
@@ -38,16 +43,5 @@ Route::get('/categories', function () {
     ]);
 });
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'title' => "Post by Category : $category->name",
-        'active' => 'categories',
-        'posts' => $category->posts->load('category', 'author')
-    ]);
-});
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        'title' => "Post By Author : $author->name",
-        'posts' => $author->posts->load('category', 'author'),
-    ]);
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
