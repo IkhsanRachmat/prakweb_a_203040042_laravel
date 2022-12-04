@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -20,6 +22,7 @@ class DashboardPostController extends Controller
             'posts' => Post::where('user_id', auth()->user()->id)->get()
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,6 +34,7 @@ class DashboardPostController extends Controller
             'categories' => Category::all()
         ]);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,14 +50,19 @@ class DashboardPostController extends Controller
             'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
+
         if ($request->file('image')) {
             $validateData['image'] = $request->file('image')->store('post-images');
         }
+
         $validateData['user_id'] = auth()->user()->id;
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
         Post::create($validateData);
+
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
+
     /**
      * Display the specified resource.
      *
@@ -66,6 +75,7 @@ class DashboardPostController extends Controller
             'post' => $post
         ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -79,6 +89,7 @@ class DashboardPostController extends Controller
             'categories' => Category::all()
         ]);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -113,8 +124,10 @@ class DashboardPostController extends Controller
 
         Post::where('id', $post->id)
             ->update($validatedData);
+
         return redirect('/dashboard/posts')->with('success', 'New post has been update!');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -131,6 +144,7 @@ class DashboardPostController extends Controller
 
         return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
     }
+
     public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);

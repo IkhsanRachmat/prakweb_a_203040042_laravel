@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('container')
     <h1 class="mb-3 text-center">{{ $title }}</h1>
+
     <div class="row justify-content-center mb-3">
         <div class="col-md-6">
             <form action="/blog">
@@ -13,7 +14,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search.." name="search"
                         value="{{ request('search') }}">
-                    <button class="btn btn-success" type="submit">Search</button>
+                    <button class="btn btn-dark" type="submit">Search</button>
                 </div>
             </form>
         </div>
@@ -30,7 +31,6 @@
                 <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
                     alt="{{ $posts[0]->category->name }}">
             @endif
-            alt="{{ $posts[0]->category->name }}">
             <div class="card-body text-center">
                 <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}"
                         class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
@@ -43,10 +43,17 @@
                         {{ $posts[0]->created_at->diffForHumans() }}
                     </small>
                 </p>
+
                 <p class="card-text">{{ $posts[0]->excerpt }}</p>
-                <a href="/posts/{{ $posts[0]->slug }}"class="text-decoration-none btn btn-primary">Read more</a>
+                <div class="wow">
+                    <button>
+                        <a href="/posts/{{ $posts[0]->slug }}"class="text-white text-decoration-none">Read more</a>
+                    </button>
+                </div>
             </div>
         </div>
+
+
         <div class="container">
             <div class="row">
                 @foreach ($posts->skip(1) as $post)
@@ -57,11 +64,15 @@
                                     class="text-white text-decoration-none">{{ $post->category->name }}</a>
                             </div>
                             @if ($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}"
-                                    class="img-fluid mt-3">
+                                <div style="max-height: 120px; overflow:hidden">
+                                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}"
+                                    class="img-fluid">
+                                </div>
                             @else
-                                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}"
-                                    alt="{{ $post->category->name }}" class="img-fluid ">
+                                <div style="max-height: 120px; overflow:hidden">
+                                    <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}"
+                                        alt="{{ $post->category->name }}" class="img-fluid ">
+                                </div>
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->slug }}</h5>
@@ -71,7 +82,9 @@
                                 </small>
                                 </p>
                                 <p class="card-text">{{ $post->excerpt }}</p>
-                                <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read mored</a>
+                                <div class="wow">
+                                    <button><a href="/posts/{{ $post->slug }}" class="text-white text-decoration-none" >Read more</a></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,4 +97,5 @@
     <div class="d-flex  justify-content-end">
         {{ $posts->links() }}
     </div>
+
 @endsection

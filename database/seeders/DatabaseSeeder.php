@@ -1,9 +1,12 @@
 <?php
+
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
         User::create([
-            'name' => 'Febrian Fauzan Rachman',
-            'email' => 'febrianfauzan860@gmail.com',
-            'password' => bcrypt('12345')
+            'name' => 'Ikhsan Rachmat Alghifari',
+            'username' => 'sans',
+            'email' => '23ikhsanrachmat@gmail.com',
+            'password' => bcrypt('ggwpisn23')
         ]);
+
         // User::create([
         //     'name' => 'Muhammad Rafi',
         //     'email' => 'mrafi60@gmail.com',
@@ -30,6 +37,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Web Programming',
             'slug' => 'web-programming'
         ]);
+
         Category::create([
             'name' => 'Personal',
             'slug' => 'personal'
@@ -52,6 +60,7 @@ class DatabaseSeeder extends Seeder
         //     'category_id' => 1,
         //     'user_id' => 1
         // ]);
+
         // Post::create([
         //     'title' => 'Peterpan',
         //     'slug' => 'Kupu-kupu Malam',
@@ -60,6 +69,7 @@ class DatabaseSeeder extends Seeder
         //     'category_id' => 1,
         //     'user_id' => 2
         // ]);
+
         // Post::create([
         //     'title' => 'Ungu',
         //     'slug' => 'Untukmu Selamanya',
@@ -68,13 +78,6 @@ class DatabaseSeeder extends Seeder
         //     'category_id' => 2,
         //     'user_id' => 1
         // ]);
-        // Post::create([
-        //     'title' => 'Utopia',
-        //     'slug' => 'Hujan',
-        //     'excerpt' => 'Rinai hujan basahi aku,temani sepi yang mengendap,kala aku mengingatmu,dan semua saat manis itu,Segalanya seperti mimpi,kujalani hidup sendiri,andai waktu berganti,aku tetap tak kan berubah',
-        //     'body' => 'Rinai hujan basahi aku,temani sepi yang mengendap,kala aku mengingatmu,dan semua saat manis itu,Segalanya seperti mimpi,kujalani hidup sendiri,andai waktu berganti,aku tetap tak kan berubah,Aku selalu bahagia,saat hujan turun,karena aku dapat mengenangmu,untukku sendiri ooohhh..ooo,Selalu ada cerita,tersimpan di hatiku,tentang kau dan hujan,tentang cinta kita,yang mengalir seperti air,Aku selalu bahagia,saat hujan turun,karena aku dapat mengenangmu,untukku sendiri ooohhh..ooo,Aku bisa tersenyum sepanjang hari,karena hujan pernah menahanmu disini,untukku ooohhh...',
-        //     'category_id' => 1,
-        //     'user_id' => 2
-        // ]);
+
     }
 }

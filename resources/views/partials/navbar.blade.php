@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
     <div class="container-fluid">
-        <a class="navbar-brand" href="\">Sans </a>
+        <a class="navbar-brand" href="\">Sanss|Blog <img src="img/wows.png" width="40"alt=""> </a>
       <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">

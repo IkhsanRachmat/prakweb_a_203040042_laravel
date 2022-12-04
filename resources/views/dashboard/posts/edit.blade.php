@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.main')
+
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit Post</h1>
@@ -66,9 +67,11 @@
                     <input id="body" type="hidden" name="body" value="{{ old('body', $post->body) }}">
                     <trix-editor input="body"></trix-editor>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Update Post</button>
         </form>
     </div>
+
     <script>
         const title = document.querySelector('#title');
         const slug = document.querySelector('#slug');
@@ -80,12 +83,15 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         });
+
         function previewImage() {
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview')
+
             imgPreview.style.display = 'block';
             const oFReader = new FileReader();
             oFReader.readAsDataURL(image.files[0]);
+
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
             }

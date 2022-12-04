@@ -1,4 +1,5 @@
 @extends ('layouts.main')
+
 @section('container')
     <div class="container">
         <div class="row justify-content-center mb-5">
@@ -24,7 +25,10 @@
                 <article class="my-3 fs-5"></article> {!! $post->body !!} </article>
 
 
-                <a href="/blog" class="d-block mt-3">Back to Posts</a>
+                <div class="wow">
+                    <button><a href="/blog" class="text-white text-decoration-none">Back</a></button>
+                </div>
+                
             </div>
         </div>
     </div>
